@@ -16,13 +16,20 @@ jobs:
       #- name: copy envfile
       #  working-directory: ./env-file-test
       #  run: pwd
-      - name: Create .env
-        uses: DeveloperRic/action-create-env@v1.0.2
+      #- name: Create .env
+      #  uses: DeveloperRic/action-create-env@v1.0.2
+      #  with:
+      #    full_text: |
+      #      PROD=1
+      #      PORT=3000
+      #      API_AUDIENCE=api.mydomain.xyz
+      #    directory: ${{ github.workspace }}
+      #    file_name: .env
+      #    fail_on_empty: false
+      - name: Make envfile
+        uses: SpicyPizza/create-envfile@v1.3
         with:
-          full_text: |
-            PROD=1
-            PORT=3000
-            API_AUDIENCE=api.mydomain.xyz
+          envkey_SOME_API_KEY: "123456abcdef"
           directory: ${{ github.workspace }}
           file_name: .env
           fail_on_empty: false
