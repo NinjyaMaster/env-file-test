@@ -26,17 +26,16 @@ jobs:
       #    directory: ${{ github.workspace }}
       #    file_name: .env
       #    fail_on_empty: false
+      - name: Checkout
+        uses: actions/checkout@v2
       - name: Make envfile
         uses: SpicyPizza/create-envfile@v1.3
         with:
           envkey_SOME_API_KEY: "123456abcdef"
           file_name: .env
-          directory: <../>
           fail_on_empty: false
-      - name: Copy .env file from /github/workspace/
-        run: cp /github/workspace/.env /home/runner/work/env-file-test/env-file-test/.env
-      - name: Checkout
-        uses: actions/checkout@v2
+      #- name: Copy .env file from /github/workspace/
+      #  run: cp /github/workspace/.env /home/runner/work/env-file-test/env-file-test/.env
       - name: Test
         run: docker-compose run --rm app sh -c "python manage.py test"
 
